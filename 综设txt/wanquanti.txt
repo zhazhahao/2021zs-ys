@@ -1,0 +1,12 @@
+第一步
+打开simpleserver  C:\ffempg\mediamtx.exe 打开
+第二步
+树莓派ffmpeg直播推流 ffmpeg -f v4l2 -video_size 320x176- -i /dev/video0 -pix_fmt yuv420p -r 30 -c:v libx264 -preset ultrafast -tune zerolatency -f rtsp -rtsp_transport tcp rtsp://192.168.137.1:8554/mystream  
+下次展示端口ip可能会改变
+第三步
+打开模型 后缀为rtsp推流地址python detect.py --source 后跟文件地址   C:\yolov5-master运行cmd输入指令
+第四步
+客户端使用rtsp地址读取视频
+
+第一第二第四步同上
+第三步 打开 openposemaster文件夹 cmd输入E:\openpose\openpose-master\build_GPU\x64\Release\OpenPoseDemo.exe --ip_camera rtsp://192.168.137.1:8554/mystream frame_rate 0.5 --net_resolution 320x176（IP可能改变）

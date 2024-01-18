@@ -1,0 +1,26 @@
+#!/bin/bash
+
+#开启视频服务器
+C:\ffempg\mediamtx.exe
+
+
+python -X utf8 C:\Users\Administrator\DRFdemo\manage.py runserver
+
+
+//yolov5
+python3 C:\yolov5-master\detect.py --source rtsp://192.168.137.1:8554/mystream
+
+
+//openpose
+C:\OPENPOSE\openpose-master\build_GPU\x64\Release\OpenPoseDemo.exe --ip_camera rtsp://192.168.137.1:8554/mystream frame_rate 0.5 --net_resolution 320x176
+
+
+C:\yolov5-master\yolov5date.exe
+
+C:\OPENPOSE\openpose-master\build_GPU\x64\Release\OpenPoseDemo.exe --ip_camera rtsp://192.168.137.1:8554/mystream --write_json D:/data/openpose/output/  frame_rate 0.5 --net_resolution 320x176
+
+python detect.py --source rtsp://192.168.137.1:8554/mystream --save-txt --project D:/data/yolov5/output/ --exist-ok --weights best.pt
+
+
+C:\OPENPOSE\openpose-master\build_GPU\x64\Release\OpenPoseDemo.exe --camera 0 frame_rate 0.5 --net_resolution 320x176
+
